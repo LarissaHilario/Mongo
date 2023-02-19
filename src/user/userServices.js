@@ -75,3 +75,16 @@ module.exports.deleteUserDBService = (userDetails) =>{
      });
 }
 
+
+module.exports.updateUserDBService=(userDetails)=>{
+   return new Promise (function myFn(resolve,reject){
+      userModel.findOneAndUpdate({lastname: userDetails.lastname}, userDetails, function getresult(errorvalue, message){
+         if (message){
+            resolve({status: true, msg: "Usuario actualizado"});
+         }
+         else{
+            reject({status:false, msg: "error"});
+         }
+      })
+      });
+      }

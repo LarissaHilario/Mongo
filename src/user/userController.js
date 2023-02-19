@@ -65,5 +65,21 @@ const deleteUserControllerFunc = async(req,res) => {
         res.send({ "status": false, "message": error.msg });
     }
 }
+const updateUserControllerFunc= async(req,res)=>{
+    let message=null;
+    try{
+        message=await userService.updateUserDBService(req.body);
+        if(message.status){
+            res.send({ "status": true, "message": message.msg });
+        } else {
+            res.send({ "status": false, "message": message.msg });
+        }
 
-module.exports = { createUserControllerFunc, loginUserControllerFunc, searchUserControllerFunc, deleteUserControllerFunc };
+    } catch (error) {
+        console.log(error);
+        res.send({ "status": false, "message": error.msg });
+    }
+}
+        
+
+module.exports = { createUserControllerFunc, loginUserControllerFunc, searchUserControllerFunc, deleteUserControllerFunc,updateUserControllerFunc };
